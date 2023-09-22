@@ -1,6 +1,7 @@
 package LottoGame.Lotto.controller;
 
 import LottoGame.Lotto.model.LottoManager;
+import LottoGame.Lotto.model.WinnerManager;
 import LottoGame.Lotto.model.WinningChecker;
 import LottoGame.Lotto.view.InputView;
 import LottoGame.Lotto.view.OutputView;
@@ -13,13 +14,12 @@ import java.util.HashMap;
 public class Game {
     private static final int LOTTO_PRICE = 1000;
     private final LottoManager lottoManager;
-    private final WinningChecker winningChecker;
-    private Winner winner;
+    private final WinnerManager winnerManager;
     private Money money;
 
     public Game() {
         this.lottoManager = new LottoManager();
-        this.winningChecker = new WinningChecker(new HashMap<>());
+        this.winnerManager = new WinnerManager();
     }
 
     public void start() {
@@ -41,15 +41,14 @@ public class Game {
 
     private void makeWinnerNumbers() {
         OutputView.getInstance().printWinnerMassage();
-        winner = new Winner(InputView.getInstance().inputWinnerNumbers());
+        winnerManager.makeNewWinner(InputView.getInstance().inputWinnerNumbers());
     }
 
     private void showResult() {
         OutputView.getInstance().printResultMassage();
-        winningChecker.checkWinning(lottoManager.getLottos(), winner.getWinner());
-        OutputView.getInstance().printResult(winningChecker.getWinnings());
+        OutputView.getInstance().printResult(winnerManager.checkWinning(lottoManager.getLottos()));
 
-        ProfitRate profit = new ProfitRate(winningChecker.calculateProfit(money));
+        ProfitRate profit = new ProfitRate(winnerManager.calculatePrice(money, lottoManager.getLottos()));
 
         if (profit.isProfit()) {
             OutputView.getInstance().printProfit(profit.getProfitRate());

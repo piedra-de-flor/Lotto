@@ -24,8 +24,6 @@ public class WinningsCheckerTest {
         String test = testWinner.toString().substring(1, testWinner.toString().length() - 1);
         Winner winner = new Winner(test);
 
-        winningChecker.checkWinning(lottoManager.getLottos(), winner.getWinner());
-
-        assertThat(winningChecker.getWinnings().get(6)).isEqualTo(1);
+        assertThat(winningChecker.checkWinning(lottoManager.getLottos(), winner.getWinner()).get(6)).isEqualTo(1);
     }
 }

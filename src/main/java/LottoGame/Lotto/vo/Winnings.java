@@ -35,8 +35,9 @@ public class Winnings {
         winnings.replace(correctCount, ++beforeValue);
     }
 
-    public int getWinningPrice() {
+    public int calculateWinningPrice() {
         int totalPrice = INITIAL_WINNING_PRICE;
+
         totalPrice += winnings.get(WinningsCount.FORTH_PLACE.correctCount) * WinningPrice.FORTH_PRICE.price;
         totalPrice += winnings.get(WinningsCount.THIRD_PLACE.correctCount) * WinningPrice.THIRD_PRICE.price;
         totalPrice += winnings.get(WinningsCount.SECOND_PLACE.correctCount) * WinningPrice.SECOND_PRICE.price;
