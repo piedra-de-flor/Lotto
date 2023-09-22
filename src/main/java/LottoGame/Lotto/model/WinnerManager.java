@@ -21,14 +21,18 @@ public class WinnerManager {
         this.winner = new Winner(numbers);
     }
 
-    public double calculatePrice(Money money, List<Lotto> lottos) {
+    public double calculateProfit(Money money, List<Lotto> lottos) {
         int inputMoney = money.getMoney();
-        int winningPrice = winningChecker.getWinningPrice();
+        int winningPrice = calculatePrice();
 
         if (winningPrice != NO_PROFIT_RATE) {
             return inputMoney / winningPrice;
         }
         return NO_PROFIT_RATE;
+    }
+
+    public int calculatePrice() {
+        return winningChecker.getWinningPrice();
     }
 
     public Map<Integer, Integer> checkWinning(List<Lotto> lottos) {

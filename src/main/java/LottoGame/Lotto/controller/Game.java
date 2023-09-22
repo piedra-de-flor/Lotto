@@ -48,7 +48,7 @@ public class Game {
         OutputView.getInstance().printResultMassage();
         OutputView.getInstance().printResult(winnerManager.checkWinning(lottoManager.getLottos()));
 
-        ProfitRate profit = new ProfitRate(winnerManager.calculatePrice(money, lottoManager.getLottos()));
+        ProfitRate profit = new ProfitRate(winnerManager.calculateProfit(money, lottoManager.getLottos()));
 
         if (profit.isProfit()) {
             OutputView.getInstance().printProfit(profit.getProfitRate());
