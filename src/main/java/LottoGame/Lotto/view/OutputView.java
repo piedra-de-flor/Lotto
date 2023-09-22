@@ -47,11 +47,7 @@ public class OutputView {
         System.out.println(WinningsCount.FIRST_PLACE.correctCount + "개 일치 (" + WinningPrice.FIRST_PRICE.price + "원)- " + result.get(WinningsCount.FIRST_PLACE.correctCount) + "개");
     }
 
-    public void printProfit(double profit) {
-        System.out.println("총 수익률은 " + profit + "입니다. (기준이 1이기 때문에 결과적으로 이득라는 의미임)");
-    }
-
-    public void printLoss(double profit) {
-        System.out.println("총 수익률은 " + profit + "입니다. (기준이 1이기 때문에 결과적으로 손해라는 의미임)");
+    public void printProfit(double profit, String result) {
+        System.out.println("총 수익률은 " + profit + "입니다. (기준이 1이기 때문에 결과적으로 " + result + "라는 의미임)");
     }
 }
