@@ -80,6 +80,7 @@ Lotto 게임 프로젝트
 <br>
 
   #### 구현 후 클래스 설계
-  ![image](https://github.com/piedra-de-flor/Lotto/assets/101418352/4ab7c154-aaed-4e42-8f3d-aa0da020c57b)
+  ![image](https://github.com/piedra-de-flor/Lotto/assets/101418352/f475f1e8-b403-4f37-991f-38efb303fad4)
+
 
 
