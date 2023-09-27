@@ -41,13 +41,13 @@ public class Winner {
     }
 
     private boolean isNoDuplication(List<Integer> numbers) {
-       int beforeDeleteDuplication = numbers.size();
-       List<Integer> numbersAfterDeleteDuplication = numbers.stream()
-               .distinct()
-               .collect(Collectors.toList());
-       int afterDeleteDuplication = numbersAfterDeleteDuplication.size();
+        int beforeDeleteDuplication = numbers.size();
+        List<Integer> numbersAfterDeleteDuplication = numbers.stream()
+                .distinct()
+                .collect(Collectors.toList());
+        int afterDeleteDuplication = numbersAfterDeleteDuplication.size();
 
-       return beforeDeleteDuplication == afterDeleteDuplication;
+        return beforeDeleteDuplication == afterDeleteDuplication;
     }
 
     private boolean isInBoundary(List<Integer> numbers) {

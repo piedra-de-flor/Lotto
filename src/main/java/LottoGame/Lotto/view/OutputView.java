@@ -41,11 +41,14 @@ public class OutputView {
     }
 
     public void printResult(Map<Integer, Integer> result) {
-        System.out.println(WinningsCount.FORTH_PLACE.correctCount + "개 일치 (" + WinningPrice.FORTH_PRICE.price + "원)- " + result.get(WinningsCount.FORTH_PLACE.correctCount) + "개");
-        System.out.println(WinningsCount.THIRD_PLACE.correctCount + "개 일치 (" + WinningPrice.THIRD_PRICE.price + "원)- " + result.get(WinningsCount.THIRD_PLACE.correctCount) + "개");
-        System.out.println(WinningsCount.SECOND_PLACE.correctCount + "개 일치 (" + WinningPrice.SECOND_PRICE.price + "원)- " + result.get(WinningsCount.SECOND_PLACE.correctCount) + "개");
-        System.out.println(WinningsCount.FIRST_PLACE.correctCount + "개 일치 (" + WinningPrice.FIRST_PRICE.price + "원)- " + result.get(WinningsCount.FIRST_PLACE.correctCount) + "개");
+        for (WinningsCount winningsCount : WinningsCount.values()) {
+            int correctCount = winningsCount.correctCount;
+            WinningPrice winningPrice = WinningPrice.valueOf(winningsCount.name());
+
+            System.out.println(correctCount + "개 일치 (" + winningPrice.price + "원) - " + result.get(correctCount) + "개");
+        }
     }
+
 
     public void printProfit(double profit, String result) {
         System.out.println("총 수익률은 " + profit + "입니다. (기준이 1이기 때문에 결과적으로 " + result + "라는 의미임)");
