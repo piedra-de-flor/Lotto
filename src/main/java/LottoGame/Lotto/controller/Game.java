@@ -2,14 +2,9 @@ package LottoGame.Lotto.controller;
 
 import LottoGame.Lotto.model.LottoManager;
 import LottoGame.Lotto.model.WinnerManager;
-import LottoGame.Lotto.model.WinningChecker;
 import LottoGame.Lotto.view.InputView;
 import LottoGame.Lotto.view.OutputView;
 import LottoGame.Lotto.vo.Money;
-import LottoGame.Lotto.vo.ProfitRate;
-import LottoGame.Lotto.vo.Winner;
-
-import java.util.HashMap;
 
 public class Game {
     private static final int LOTTO_PRICE = 1000;
@@ -31,7 +26,7 @@ public class Game {
     private void purchase() {
         OutputView.getInstance().printInputMoneyMassage();
         money = new Money(InputView.getInstance().inputMoney(), LOTTO_PRICE);
-        int lottoAmount = money.getMoney() / LOTTO_PRICE;
+        int lottoAmount = money.getValue() / LOTTO_PRICE;
 
         OutputView.getInstance().printAmountLottos(lottoAmount);
 

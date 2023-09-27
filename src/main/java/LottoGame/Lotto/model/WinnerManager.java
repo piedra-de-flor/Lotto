@@ -23,7 +23,7 @@ public class WinnerManager {
     }
 
     public double calculateProfit(Money money, List<Lotto> lottos) {
-        int inputMoney = money.getMoney();
+        int inputMoney = money.getValue();
         int winningPrice = calculatePrice();
 
         this.profitRate = new ProfitRate(inputMoney, winningPrice);

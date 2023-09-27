@@ -3,25 +3,25 @@ package LottoGame.Lotto.vo;
 public class Money {
     private static final int ZERO_FOR_CHECK_MONEY_IS_FIT = 0;
     private final int lottoPrice;
-    private final int money;
+    private final int value;
     public Money(String input, int lottoPrice) {
         this.lottoPrice = lottoPrice;
-        this.money = validateInput(input);
+        this.value = validateInput(input);
     }
 
-    public int getMoney() {
-        return money;
+    public int getValue() {
+        return value;
     }
 
     private int validateInput(String input) {
-        int money;
-        money = isNumber(input);
+        int value;
+        value = isNumber(input);
 
-        if (!isValidMoney(money)) {
+        if (!isValidMoney(value)) {
             throw new IllegalArgumentException("CHECK YOUR INPUT {It has to over lotto price and Perfectly divided by lotto price");
         }
 
-        return money;
+        return value;
     }
 
     private int isNumber(String input) {
