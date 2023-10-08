@@ -37,6 +37,8 @@ public class Game {
     private void makeWinnerNumbers() {
         OutputView.getInstance().printWinnerMassage();
         winnerManager.makeNewWinner(InputView.getInstance().inputWinnerNumbers());
+        OutputView.getInstance().printBonusWinnerMassage();
+        winnerManager.makeBonusBall(InputView.getInstance().inputBonusNumber());
     }
 
     private void showResult() {

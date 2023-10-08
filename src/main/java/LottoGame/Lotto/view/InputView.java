@@ -20,4 +20,6 @@ public class InputView {
     public String inputWinnerNumbers() {
         return scanner.nextLine();
     }
+
+    public String inputBonusNumber() {return scanner.nextLine();}
 }

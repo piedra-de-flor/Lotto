@@ -18,13 +18,9 @@ public class RandomNumberTest {
         LottoNumberMaker lottoNumberMaker = new LottoNumberMakerImpl();
 
         List<Integer> originNumbers = lottoNumberMaker.makeLottoNumbers();
-        int min = originNumbers.get(0);
         Numbers numbers = new Numbers(originNumbers);
-
-        assertThat(min).isNotEqualTo(numbers.getNumbers().get(0));
-
         Collections.sort(originNumbers);
-        min = originNumbers.get(0);
+        int min = originNumbers.get(0);
 
         assertThat(min).isEqualTo(numbers.getNumbers().get(0));
     }

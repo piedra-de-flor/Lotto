@@ -1,10 +1,8 @@
 package LottoGame.Lotto.model;
 
-import LottoGame.Lotto.vo.Lotto;
-import LottoGame.Lotto.vo.Money;
-import LottoGame.Lotto.vo.ProfitRate;
-import LottoGame.Lotto.vo.Winner;
+import LottoGame.Lotto.vo.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +10,7 @@ import java.util.Map;
 public class WinnerManager {
     private final WinningChecker winningChecker;
     private Winner winner;
+    private BonusBall bonus;
     private ProfitRate profitRate;
 
     public WinnerManager() {
@@ -20,6 +19,10 @@ public class WinnerManager {
 
     public void makeNewWinner(String numbers) {
         this.winner = new Winner(numbers);
+    }
+
+    public void makeBonusBall(String number) {
+        this.bonus = new BonusBall(number, this.winner);
     }
 
     public double calculateProfit(Money money, List<Lotto> lottos) {
@@ -34,8 +37,8 @@ public class WinnerManager {
         return winningChecker.getWinningPrice();
     }
 
-    public Map<Integer, Integer> checkWinning(List<Lotto> lottos) {
-        return winningChecker.checkWinning(lottos, winner.getWinner());
+    public Map<WinningsCount, Integer> checkWinning(List<Lotto> lottos) {
+        return winningChecker.checkWinning(lottos, winner.getWinner(), this.bonus.getNumber());
     }
 
     public String getResult() {

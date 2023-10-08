@@ -1,49 +1,61 @@
 package LottoGame.Lotto;
 
 import LottoGame.Lotto.vo.Winnings;
+import LottoGame.Lotto.vo.WinningsCount;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class WinningsTest {
-    @DisplayName("당첨된 로또 횟수 Map 생성 테스트")
-    @Test
-    void 당첨된_로또_횟수_Map_생성_테스트() {
-        Winnings winnings = new Winnings(new HashMap<>());
-        Set<Integer> keySet = new HashSet<>();
-
-        keySet.add(3);
-        keySet.add(4);
-        keySet.add(5);
-        keySet.add(6);
-
-        assertThat(winnings.getWinnings().keySet()).isEqualTo(keySet);
-    }
-
     @DisplayName("당첨된 로또 횟수 추가 실패 테스트")
     @ParameterizedTest
     @ValueSource(ints = {1, 2, 0})
     void 당첨된_로또_횟수_추가_실패_테스트(int input) {
         Winnings winnings = new Winnings(new HashMap<>());
-        winnings.add(input);
+        winnings.recordInNotFiveCorrectCount(input);
 
-        assertThat(winnings.getWinnings().values().contains(1)).isEqualTo(false);
+        assertThat(winnings.getWinnings().values().stream()
+                .anyMatch(integer -> integer > 0))
+                .isEqualTo(false);
     }
 
-    @DisplayName("당첨된 로또 횟수 추가 성공 테스트")
+    @DisplayName("당첨된 로또 횟수 추가 성공 테스트 (2,3등 제외)")
     @ParameterizedTest
-    @ValueSource(ints = {3, 4, 5})
-    void 당첨된_로또_횟수_추가_성공_테스트(int input) {
+    @ValueSource(ints = {3, 4, 6})
+    void 당첨된_로또_횟수_추가_성공_테스트_1등_4등_5등(int input) {
         Winnings winnings = new Winnings(new HashMap<>());
-        winnings.add(input);
+        winnings.recordInNotFiveCorrectCount(input);
 
-        assertThat(winnings.getWinnings().values().contains(1)).isEqualTo(true);
+        assertThat(winnings.getWinnings().values().stream()
+                .anyMatch(integer -> integer > 0)).isEqualTo(true);
+    }
+
+    @DisplayName("당첨된 로또 횟수 추가 성공 테스트 (3등만)")
+    @Test
+    void 당첨된_로또_횟수_추가_성공_테스트_3등() {
+        Winnings winnings = new Winnings(new HashMap<>());
+        winnings.recordInNotFiveCorrectCount(5);
+
+        assertThat(winnings.getWinnings().entrySet().stream()
+                .filter(winningsCountIntegerEntry -> winningsCountIntegerEntry.getValue() > 0)
+                .anyMatch(winningsCountIntegerEntry -> winningsCountIntegerEntry.getKey() == WinningsCount.THIRD_PLACE))
+                .isEqualTo(true);
+    }
+
+    @DisplayName("당첨된 로또 횟수 추가 성공 테스트 (2등만)")
+    @Test
+    void 당첨된_로또_횟수_추가_성공_테스트_2등() {
+        Winnings winnings = new Winnings(new HashMap<>());
+        winnings.recordInFiveCorrectCount(true);
+
+        assertThat(winnings.getWinnings().entrySet().stream()
+                .filter(winningsCountIntegerEntry -> winningsCountIntegerEntry.getValue() > 0)
+                .anyMatch(winningsCountIntegerEntry -> winningsCountIntegerEntry.getKey() == WinningsCount.SECOND_PLACE))
+                .isEqualTo(true);
     }
 }

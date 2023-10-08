@@ -34,19 +34,30 @@ public class OutputView {
         System.out.println("지난 주 당첨 번호를 입력해 주세요.");
     }
 
+    public void printBonusWinnerMassage() {
+        System.out.println("보너스 볼을 입력해 주세요.");
+    }
+
     public void printResultMassage() {
         System.out.println();
         System.out.println("당첨 통계");
         System.out.println("----------");
     }
 
-    public void printResult(Map<Integer, Integer> result) {
+    public void printResult(Map<WinningsCount, Integer> result) {
         for (WinningsCount winningsCount : WinningsCount.values()) {
-            int correctCount = winningsCount.correctCount;
-            WinningPrice winningPrice = WinningPrice.valueOf(winningsCount.name());
-
-            System.out.println(correctCount + "개 일치 (" + winningPrice.price + "원) - " + result.get(correctCount) + "개");
+            printWinningAmount(result, winningsCount);
         }
+    }
+
+    private void printWinningAmount(Map<WinningsCount, Integer> result, WinningsCount winningsCount) {
+        WinningPrice winningPrice = WinningPrice.valueOf(winningsCount.name());
+
+        if (winningsCount == WinningsCount.SECOND_PLACE) {
+            System.out.println(winningsCount.correctCount + "개 일치, 보너스 볼 일치 (" + winningPrice.price + "원) - " + result.get(winningsCount) + "개");
+            return;
+        }
+        System.out.println(winningsCount.correctCount + "개 일치 (" + winningPrice.price + "원) - " + result.get(winningsCount) + "개");
     }
 
 
