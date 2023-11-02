@@ -17,7 +17,7 @@ public class WinnerManager {
         this.winningChecker = new WinningChecker(new HashMap<>());
     }
 
-    public void makeNewWinner(String numbers) {
+    public void makeNewWinner(List<Integer> numbers) {
         this.winner = new Winner(numbers);
     }
 

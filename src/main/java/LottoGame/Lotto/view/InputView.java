@@ -17,6 +17,14 @@ public class InputView {
         return scanner.nextLine();
     }
 
+    public String inputManualLottoAmount() {
+        return scanner.nextLine();
+    }
+
+    public String inputManualLottoNumbers() {
+        return scanner.nextLine();
+    }
+
     public String inputWinnerNumbers() {
         return scanner.nextLine();
     }

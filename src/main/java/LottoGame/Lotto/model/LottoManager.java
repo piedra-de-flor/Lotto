@@ -2,6 +2,7 @@ package LottoGame.Lotto.model;
 
 import LottoGame.Lotto.vo.Lotto;
 import LottoGame.Lotto.vo.Lottos;
+import LottoGame.Lotto.vo.Numbers;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,6 +25,10 @@ public class LottoManager {
         for (int amount = LOTTO_AMOUNT_INITIAL_COUNT; amount < lottoAmount; amount++) {
             lottos.add(makeLotto());
         }
+    }
+
+    public void makeManualLottos(List<Integer> numbers) {
+        lottos.add(new Lotto(numbers));
     }
 
     private Lotto makeLotto() {
