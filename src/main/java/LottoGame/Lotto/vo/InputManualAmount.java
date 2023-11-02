@@ -1,9 +1,9 @@
 package LottoGame.Lotto.vo;
 
-public class InputAmount {
+public class InputManualAmount {
     private final int amount;
 
-    public InputAmount(String input, int autoAmount) {
+    public InputManualAmount(String input, int autoAmount) {
         this.amount = validateAmount(input, autoAmount);
     }
 

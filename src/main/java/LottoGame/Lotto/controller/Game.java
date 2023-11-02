@@ -4,15 +4,9 @@ import LottoGame.Lotto.model.LottoManager;
 import LottoGame.Lotto.model.WinnerManager;
 import LottoGame.Lotto.view.InputView;
 import LottoGame.Lotto.view.OutputView;
-import LottoGame.Lotto.vo.InputAmount;
+import LottoGame.Lotto.vo.InputManualAmount;
 import LottoGame.Lotto.vo.InputNumbers;
 import LottoGame.Lotto.vo.Money;
-import LottoGame.Lotto.vo.Numbers;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class Game {
     private static final int LOTTO_PRICE = 1000;
@@ -46,8 +40,8 @@ public class Game {
 
     private int manualPurchase(int lottoAmount) {
         OutputView.getInstance().printInputManualLottoAmount();
-        InputAmount inputAmount = new InputAmount(InputView.getInstance().inputManualLottoAmount(), lottoAmount);
-        int manualLottoAmount = inputAmount.getAmount();
+        InputManualAmount inputManualAmount = new InputManualAmount(InputView.getInstance().inputManualLottoAmount(), lottoAmount);
+        int manualLottoAmount = inputManualAmount.getAmount();
 
         OutputView.getInstance().printInputManualLottoNumbers();
         for (int i = INITIAL_MANUAL_LOTTO_INDEX; i < manualLottoAmount; i++) {
