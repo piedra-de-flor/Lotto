@@ -23,8 +23,7 @@ public class WinningsCheckerTest {
 
         lottoManager.makeLottos(1);
         List<Integer> testWinner = lottoManager.getLottos().get(0).getNumbers();
-        String test = testWinner.toString().substring(1, testWinner.toString().length() - 1);
-        Winner winner = new Winner(test);
+        Winner winner = new Winner(testWinner);
 
         assertThat(winningChecker.checkWinning(lottoManager.getLottos(), winner.getWinner(),0)
                 .get(WinningsCount.FIRST_PLACE))

@@ -1,3 +1,4 @@
+
 package LottoGame.Lotto.vo;
 
 import java.util.Collections;
@@ -14,7 +15,6 @@ public class Numbers {
     public List<Integer> getNumbers() {
         return numbers;
     }
-
     private void changeNumbersToAscendingOrder() {
         Collections.sort(this.numbers);
     }
